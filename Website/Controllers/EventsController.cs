@@ -1,10 +1,7 @@
 ﻿using System.Web.Mvc;
-using System.Xml;
 using Glass.Mapper.Sc;
 using Models.Events;
-using Services.Addresses;
 using Services.Events;
-using Sitecore.Configuration;
 using Website.ViewModels.Events;
 
 namespace Website.Controllers
@@ -22,9 +19,6 @@ namespace Website.Controllers
 
         public ActionResult GetEvents()
         {
-            string str = string.Concat("factories/factory", "");
-            XmlNode configNode = Factory.GetConfigNode(str, true);
-
             var dataSource =
                 _sitecoreContext.GetItem<EventViewData>(Sitecore.Mvc.Presentation.RenderingContext.Current.Rendering.DataSource);
             var events = _eventService.GetEvents();
