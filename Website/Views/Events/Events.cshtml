@@ -1,0 +1,42 @@
+﻿@inherits Glass.Mapper.Sc.Web.Mvc.GlassView<Website.ViewModels.Events.EventsViewModel>
+
+<div>
+    <h2>@Editable(x => x.Datasource.Title)</h2>
+</div>
+<div>
+    <h5>@Editable(x => x.Datasource.Description)</h5>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width:200px" align="left">@Editable(x => x.Datasource.NameColName)</th>
+            <th style="width:200px" align="left">@Editable(x => x.Datasource.LocationColName)</th>
+            <th style="width:150px" align="left">@Editable(x => x.Datasource.DateTimeColName)</th>
+            <th style="width:200px" align="left">@Editable(x => x.Datasource.DescriptionColName)</th>
+        </tr>
+    </thead>
+    @foreach (var eventItem in Model.Events)
+    {
+        <tr>
+            <td align="left">
+                @eventItem.Name
+            </td>
+            <td align="left">
+                @eventItem.Address.Name<br />
+                @eventItem.Address.Address1<br />
+                @if (!string.IsNullOrWhiteSpace(eventItem.Address.Address2))
+                {
+                    @eventItem.Address.Address2<br />
+                }
+                @eventItem.Address.City, @eventItem.Address.State @eventItem.Address.ZipCode
+            </td>
+            <td align="left">
+                @eventItem.Date.ToString("d")
+            </td>
+            <td align="left">
+                @eventItem.Description
+            </td>
+        </tr>
+    }
+</table>

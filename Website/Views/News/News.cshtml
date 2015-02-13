@@ -1,0 +1,11 @@
+﻿@model Website.ViewModels.News.NewsViewModel
+
+@foreach (var article in Model.Articles)
+{
+    <p>
+        <h3>@article.Headline</h3>
+        <h5>@article.Author, @article.PublishDate.ToString("d")</h5>
+        @Html.Raw(HttpUtility.HtmlDecode(article.Body))
+    </p>
+    <br />
+}
